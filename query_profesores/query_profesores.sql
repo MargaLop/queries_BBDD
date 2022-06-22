@@ -41,3 +41,14 @@ VALUES (
     'GUIJARRO ALIA, MANUELA'
     ,'INFORMATICA'
 );
+
+-- Sea la tabla CENTROS. Cambiar la direccion del cod_centro 22 a 'C/ Pilon 13' y el numero de plazas a 295.
+
+SELECT * FROM centros;
+SET SQL_SAFE_UPDATES = 0;
+UPDATE 
+	centros 
+SET 
+	cod_centro = 'C/ Pilon 13',
+	num_plazas = 295
+WHERE cod_centro = 22;
