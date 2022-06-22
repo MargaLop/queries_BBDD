@@ -5,7 +5,7 @@ VALUES
     45,
     'Quiroga Martin, A. Isabel',
     'INFORMATICA'
-    );
+);
 
 
 -- Insertar un profesor en la tabla PROFESORES de apellidos y nombre 'GONZALEZ SEVILLA, MIGUEL A.', en el codigo de centro 22, con DNI 23444800 y de la especialidad de 'HISTORIA'.
@@ -16,17 +16,15 @@ VALUES
     23444800,
     'Gonzalez Sevilla, Miguel A.',
     'HISTORIA'
-    );
+);
+
 
 -- Inserta en la tabla PERSONAL los profesores de la tabla PROFESORES. El cod_centro, el dni y los apellidos son los mismos que los de la tabla PROFESORES, la funcion es PROFESOR y el salario , 1900.
 INSERT INTO personal VALUES (45,0,'Quiroga Martin, A. Isabel','INFORMATICA',1900);
 INSERT INTO personal VALUES (22,23444800,'Gonzalez Sevilla, Miguel A.','HISTORIA', 1900);
 
 
--- 
-
 -- Inserta en la tabla PROFESORES un profesor de apellidos y nombre 'GUIJARRO ALIA, MANUELA', con DNI 28848110, de la especialidad de 'INFORMATICA' en el codigo de centro que tenga dos trabajadores cuya funcion sea 'CONSERJE'.
- 
 INSERT INTO profesores(cod_centro,dni,apellidos,especialidad)
 VALUES (
 		(SELECT
@@ -42,8 +40,8 @@ VALUES (
     ,'INFORMATICA'
 );
 
--- Sea la tabla CENTROS. Cambiar la direccion del cod_centro 22 a 'C/ Pilon 13' y el numero de plazas a 295.
 
+-- Sea la tabla CENTROS. Cambiar la direccion del cod_centro 22 a 'C/ Pilon 13' y el numero de plazas a 295.
 SELECT * FROM centros;
 SET SQL_SAFE_UPDATES = 0;
 UPDATE 
@@ -52,3 +50,26 @@ SET
 	cod_centro = 'C/ Pilon 13',
 	num_plazas = 295
 WHERE cod_centro = 22;
+
+
+-- Sumar 50 al numero de plazas (columna NUM_PLAZAS) de la tabla CENTROS, para aquellos centros que tengan profesores de la especialidad 'INFORMATICA'.
+SELECT 
+	nombre,
+	num_plazas + 50,
+    apellidos,
+    especialidad
+    
+    
+FROM centros
+LEFT JOIN profesores USING (cod_centro)
+WHERE especialidad = 'INFORMATICA'
+;
+
+
+-- Eliminar de la tabla CENTROS aquellos centros que no tengan profesores de la especialidad de 'INFORMATICA'.
+DELETE FROM centros WHERE cod_centro NOT IN (SELECT 
+	cod_centro
+FROM
+	profesores
+WHERE (especialidad = 'INFORMÁTICA')
+group by cod_centro);
