@@ -96,3 +96,37 @@ LEFT JOIN address USING (address_id)
 LEFT JOIN city USING (city_id)
 LEFT JOIN country USING (country_id)
 GROUP BY(country_id);
+
+
+--  Actores que tienen de primer nombre ‘Scarlett’.
+SELECT 
+    * 
+FROM 
+    actor 
+WHERE upper(first_name) = 'SCARLETT';
+
+
+
+-- Actores que contengan una ‘O’ en su nombre.
+SELECT 
+    * 
+FROM 
+    actor 
+WHERE upper(first_name) LIKE '%O%';
+
+
+-- Actores que contengan dos ‘O’ en su nombre y en una ‘A’ en su apellido.
+SELECT 
+    * 
+FROM 
+    actor 
+WHERE upper(first_name) LIKE '%O%O%'
+AND upper(last_name) LIKE '%A%';
+
+
+--Actores donde su tercera letra sea ‘B’.
+SELECT 
+    * 
+FROM 
+    actor 
+WHERE upper(first_name) LIKE '__B%';
