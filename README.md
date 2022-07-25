@@ -1,3 +1,3 @@
-# ejercicios_query_sql
+# queries_BBDD
 
-Primeras consultas de mysql.
+Aprendizeje de bases de datos SQL (MySQL) y no SQL(MongoDB).
