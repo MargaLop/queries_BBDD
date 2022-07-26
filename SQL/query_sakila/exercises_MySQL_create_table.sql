@@ -56,3 +56,15 @@ country_name VARCHAR(45) NOT NULL,
 region_id INT(11) NOT NULL
 CHECK(country_name IN('Italy','India','China')) 
 );
+
+
+--  Write a SQL statement to create a table named job_histry including columns employee_id, start_date, end_date, job_id and department_id and make sure that the value against column end_date will be entered at the time of insertion to the format like '--/--/----'.
+
+CREATE TABLE IF NOT EXISTS job_histry(
+employee_id INT(11) NOT NULL, 
+start_date date NOT NULL, 
+end_date date NOT NULL, 
+job_id INT(11) NOT NULL, 
+department_id INT(11) NOT NULL,
+CHECK (end_date LIKE '--/--/----')
+);
